@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, push } from 'firebase/database'
+import { getDatabase, ref, push, get, remove } from 'firebase/database'
 
 import { Configuration, OpenAIApi } from 'openai'
 
@@ -31,14 +31,11 @@ userInput.addEventListener("blur", function() {
     userInput.removeAttribute("rows")
 })
 
-const conversationArr = []
-
 let AIResponse = ''
 const editableSpeechBubble = document.createElement('div')
 editableSpeechBubble.classList.add('speech', 'speech-human')
 editableSpeechBubble.setAttribute("contenteditable", true)
 
-  
 const instructionObj = {
     role: 'system',
     content: `
@@ -84,19 +81,13 @@ const instructionObj = {
     `
 }
 
-localStorage.setItem("instructionObj", instructionObj)
-
-document.addEventListener('submit', async (e) => {
+document.addEventListener('submit', (e) => {
     e.preventDefault()
-    localStorage.setItem("userInput", {
-        role: 'user',
-        content: userInput.value
-    })
     push(conversationInDb, {
         role: 'user',
         content: userInput.value
     })
-    await fetchReply()
+    fetchReply()
     const newSpeechBubble = document.createElement('div')
     newSpeechBubble.classList.add('speech', 'speech-human')
     chatbotConversation.appendChild(newSpeechBubble)
@@ -105,24 +96,28 @@ document.addEventListener('submit', async (e) => {
 })
 
 async function fetchReply() {
-    let system_msg_obj = localStorage.getItem("instructionObj")
-    conversationArr.push(system_msg_obj)
-    let user_input_obj = localStorage.getItem("userInput")
-    conversationArr.push(user_input_obj) 
-    const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: conversationArr,
-        temperature: 0.37,
-        presence_penalty: 0.37,
-        frequency_penalty: -0.37,
-        max_tokens: 400
+    get(conversationInDb).then(async (snapshot) => {
+        if (snapshot.exists()) {
+            const conversationArr = Object.values(snapshot.val())
+            conversationArr.unshift(instructionObj)
+            const response = await openai.createChatCompletion({
+                model: 'gpt-3.5-turbo',
+                messages: conversationArr,
+                temperature: 0.37,
+                presence_penalty: 0.37,
+                frequency_penalty: -0.37,
+                max_tokens: 400
+            })
+            AIResponse = response.data.choices[0].message.content 
+            push(conversationInDb, response.data.choices[0].message)
+            renderTypewriterText(response.data.choices[0].message.content)
+            responseContainer.appendChild(editableSpeechBubble)
+            editableSpeechBubble.textContent = response.data.choices[0].message.content
+        }
+        else {
+            console.log('No data available')
+        }
     })
-    AIResponse = response.data.choices[0].message.content
-    localStorage.setItem("AIResponse", response.data.choices[0].message) 
-    push(conversationInDb, response.data.choices[0].message)
-    renderTypewriterText(response.data.choices[0].message.content)
-    responseContainer.appendChild(editableSpeechBubble)
-    editableSpeechBubble.textContent = response.data.choices[0].message.content
 }
 
 function renderTypewriterText(text) {
@@ -141,16 +136,12 @@ function renderTypewriterText(text) {
 }
 
 document.getElementById('clear-btn').addEventListener('click', () => {
-    localStorage.clear()
+    remove(conversationInDb)
     chatbotConversation.innerHTML = '<div class="speech speech-ai">How can I help you?</div>'
     userInput.value = ''
 })
 
 document.getElementById('compare-btn').addEventListener('click', () => {
-    conversationArr.push({
-        role: 'user',
-        content: editableSpeechBubble.textContent
-    })
     push(conversationInDb, {
         role: 'user',
         content: editableSpeechBubble.textContent
@@ -159,14 +150,18 @@ document.getElementById('compare-btn').addEventListener('click', () => {
 })
 
 function renderConversationFromDb(){
-    conversationArr.forEach(convarrObj => {
-        const newSpeechBubble = document.createElement('div')
-        newSpeechBubble.classList.add(
-            'speech',
-            `speech-${convarrObj.role === 'user' ? 'human' : 'ai'}`
-        )
-        chatbotConversation.appendChild(newSpeechBubble)
-        newSpeechBubble.textContent = convarrObj.content
+    get(conversationInDb).then(async (snapshot)=>{
+        if(snapshot.exists()) {
+            Object.values(snapshot.val()).forEach(dbObj => {
+                const newSpeechBubble = document.createElement('div')
+                newSpeechBubble.classList.add(
+                    'speech',
+                    `speech-${dbObj.role === 'user' ? 'human' : 'ai'}`
+                    )
+                chatbotConversation.appendChild(newSpeechBubble)
+                newSpeechBubble.textContent = dbObj.content
+            })
+        }
     })
 }
 
