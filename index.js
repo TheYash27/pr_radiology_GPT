@@ -86,7 +86,7 @@ const instructionObj = {
 
 localStorage.setItem("instructionObj", instructionObj)
 
-document.addEventListener('submit', (e) => {
+document.addEventListener('submit', async (e) => {
     e.preventDefault()
     localStorage.setItem("userInput", {
         role: 'user',
@@ -96,7 +96,7 @@ document.addEventListener('submit', (e) => {
         role: 'user',
         content: userInput.value
     })
-    fetchReply()
+    await fetchReply()
     const newSpeechBubble = document.createElement('div')
     newSpeechBubble.classList.add('speech', 'speech-human')
     chatbotConversation.appendChild(newSpeechBubble)
