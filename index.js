@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, push, get, remove } from 'firebase/database'
+import { getDatabase, ref, push } from 'firebase/database'
 
 import { Configuration, OpenAIApi } from 'openai'
 
@@ -86,7 +86,7 @@ const instructionObj = {
 
 localStorage.setItem("instructionObj", instructionObj)
 
-document.addEventListener('submit', async (e) => {
+document.addEventListener('submit', (e) => {
     e.preventDefault()
     localStorage.setItem("userInput", {
         role: 'user',
@@ -96,7 +96,7 @@ document.addEventListener('submit', async (e) => {
         role: 'user',
         content: userInput.value
     })
-    await fetchReply()
+    fetchReply()
     const newSpeechBubble = document.createElement('div')
     newSpeechBubble.classList.add('speech', 'speech-human')
     chatbotConversation.appendChild(newSpeechBubble)
