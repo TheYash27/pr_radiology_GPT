@@ -83,6 +83,7 @@ const instructionObj = {
 
 document.addEventListener('submit', (e) => {
     e.preventDefault()
+    responseContainer.innerHTML = '<img src="./images/loading.gif" />'
     push(conversationInDb, {
         role: 'user',
         content: userInput.value
@@ -112,7 +113,7 @@ async function fetchReply() {
             push(conversationInDb, response.data.choices[0].message)
             renderTypewriterText(response.data.choices[0].message.content)
             responseContainer.appendChild(editableSpeechBubble)
-            editableSpeechBubble.textContent = response.data.choices[0].message.content
+            editableSpeechBubble.innerHTML = response.data.choices[0].message.content
         }
         else {
             console.log('No data available')
