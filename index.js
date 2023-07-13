@@ -46,7 +46,6 @@ const instructionObj = {
     while strictly following the report template provided, delimited with
     "####" characters.
     Make sure to retain the chronological order of the paragraphs specific to different parts of the knee, delimited with "###" characters, in the "Findings" section.
-    Make "MRI of the [side] knee", "Clinical History", "Technique", "Findings", and "Impression", bold in your detailed report.
     Do not make any suggestions in the "Findings" section.
     Do not include in your detailed report whatever knee structures
     have not been explicitly mentioned in the short summary.
