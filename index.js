@@ -100,10 +100,10 @@ async function fetchReply() {
     get(conversationInDb).then(async (snapshot) => {
         if (snapshot.exists()) {
             const conversationArr = Object.values(snapshot.val())
-            conversationArr.unshift(instructionObj)
+            const context = [instructionObj, conversationArr[conversationArr.length - 1]]
             const response = await openai.createChatCompletion({
                 model: 'gpt-3.5-turbo',
-                messages: conversationArr,
+                messages: context,
                 temperature: 0.37,
                 presence_penalty: 0.37,
                 frequency_penalty: -0.37,
@@ -140,7 +140,6 @@ function renderTypewriterText(text) {
 }
 
 document.getElementById('clear-btn').addEventListener('click', () => {
-    remove(conversationInDb)
     chatbotConversation.innerHTML = '<div class="speech speech-ai">How can I help you?</div>'
     userInput.value = ''
 })
