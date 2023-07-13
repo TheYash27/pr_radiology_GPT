@@ -44,15 +44,15 @@ const instructionObj = {
     You will be provided with a short summary of a knee MRI report.
     You have to create a detailed report from the same
     while strictly following the report template provided, delimited with
-    "####" characters.
-    Make sure to retain the chronological order of the paragraphs specific to different parts of the knee, delimited with "###" characters, in the "Findings" section.
-    Make the phrases "MRI of the [side] knee", "Clinical History", "Technique", "Findings", and "Impression", bold in your detailed report.
+    "###" characters.
+    Make sure to retain the chronological order of the paragraphs specific to different parts of the knee, delimited with "***" characters, in the "Findings" section.
+    Make "MRI of the [side] knee", "Clinical History", "Technique", "Findings", and "Impression", bold in your detailed report.
     Do not make any suggestions in the "Findings" section.
     Do not include in your detailed report whatever knee structures
     have not been explicitly mentioned in the short summary.
     Make sure to include, only in the "Impression" section of your detailed report, any negative comments or points of concern which have been mentioned
     or referred to in the short summary.
-    ####
+    ###
     MRI of the [side] knee\n
     
     Clinical History:
@@ -60,24 +60,24 @@ const instructionObj = {
     \nTechnique: Multiplanar, multiecho MRI of the [side] knee\n
     
     Findings:
-    ###
+    ***
     There is no medial compartment bone marrow edema. Intact medial articular cartilage, meniscus and collateral ligament.
-    ###
-    ###
+    ***
+    ***
     No lateral compartment bone marrow edema. Intact articular cartilage, lateral meniscus, iliotibial band, biceps femoris, fibular collateral ligament and popliteus.
-    ###
-    ###
+    ***
+    ***
     The extensor mechanism is intact. Patellar position is normal. Patellofemoral cartilage and ligaments are intact.
-    ###
-    ###
+    ***
+    ***
     There is no joint effusion or abnormal bursal fluid.
-    ###
-    ###
+    ***
+    ***
     The anterior, posterior cruciate ligaments and neurovascular structures are intact.
-    ###
+    ***
 
     \nImpression: Unremarkable MRI of the [side] knee
-    ####
+    ###
     `
 }
 
