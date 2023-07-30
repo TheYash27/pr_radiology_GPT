@@ -46,11 +46,11 @@ const instructionObj = {
     while strictly following the report template provided, delimited with
     "####" characters.
     Make sure to retain the chronological order of the paragraphs specific to different parts of the knee, delimited with "###" characters, in the "Findings" section.
-    Make "MRI of the [side] knee", "Clinical History", "Technique", "Findings", and "Impression", bold in your detailed report.
+    Make "MRI of the [side] knee", "Clinical History", "Technique" and "Findings" bold in your detailed report.
     Do not make any suggestions in the "Findings" section.
     Do not include in your detailed report whatever knee structures
     have not been explicitly mentioned in the short summary.
-    Make sure to include, only in the "Impression" section of your detailed report, any negative comments or points of concern which have been mentioned
+    Make sure to include any negative comments or points of concern which have been mentioned
     or referred to in the short summary.
     ####
     MRI of the [side] knee\n
@@ -75,8 +75,6 @@ const instructionObj = {
     ###
     about suprapatellar bursa, bakers cyst (popliteal cyst), popliteus tendon sheath, pes anserinus bursa, prepatellar bursa
     ###
-
-    \nImpression: Unremarkable MRI of the [side] knee
     ####
     `
 }
