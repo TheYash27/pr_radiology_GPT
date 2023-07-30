@@ -61,19 +61,19 @@ const instructionObj = {
     
     Findings:
     ###
-    There is no medial compartment bone marrow edema. Intact medial articular cartilage, meniscus and collateral ligament.
+    about medial compartment bone marrow, articular cartilage, medial meniscus, medial collateral ligament (MCL)
     ###
     ###
-    No lateral compartment bone marrow edema. Intact articular cartilage, lateral meniscus, iliotibial band, biceps femoris, fibular collateral ligament and popliteus.
+    about lateral compartment bone marrow, articular cartilage, lateral meniscus, iliotibial band, biceps femoris, fibular collateral ligament (LCL), popliteus muscle
     ###
     ###
-    The extensor mechanism is intact. Patellar position is normal. Patellofemoral cartilage and ligaments are intact.
+    about patellar position, patellofemoral cartilage, patellofemoral ligaments, quadriceps tendon, patellar tendon
     ###
     ###
-    There is no joint effusion or abnormal bursal fluid.
+    about anterior cruciate ligament (ACL), posterior cruciate ligament (PCL)
     ###
     ###
-    The anterior, posterior cruciate ligaments and neurovascular structures are intact.
+    about suprapatellar bursa, bakers cyst (popliteal cyst), popliteus tendon sheath, pes anserinus bursa, prepatellar bursa
     ###
 
     \nImpression: Unremarkable MRI of the [side] knee
