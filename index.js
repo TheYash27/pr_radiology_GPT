@@ -75,6 +75,8 @@ const instructionObj = {
     ###
     about suprapatellar bursa, bakers cyst (popliteal cyst), popliteus tendon sheath, pes anserinus bursa, prepatellar bursa
     ###
+
+    \nImpression: Unremarkable MRI of the [side] knee
     ####
     `
 }
