@@ -43,14 +43,17 @@ const instructionObj = {
     specialization in knee MRI scans.
     You will be provided with a short summary of a knee MRI report.
     You have to create a detailed report of findings from the same
+    in a section titled "Findings"
     while strictly following the report template provided, delimited with
     "####" characters.
+    Then, summarize the detailed report of findings in less than 100 words
+    in a section titled "Impression".
     Make sure to retain the chronological order of the paragraphs specific to different parts of the knee, delimited with "###" characters, in the "Findings" section.
-    Make the word "Findings" bold in your detailed findings.
+    Make the words "Findings" and "Impression" bold in your final output.
     Do not make any suggestions in the "Findings" section.
     Do not include in your detailed findings whatever knee structures
     have not been explicitly mentioned in the short summary.
-    Make sure to include, only in the "Findings" section of your detailed report, any negative comments or points of concern which have been mentioned
+    Make sure to include, only in the "Impression" section of your detailed report, any negative comments or points of concern which have been mentioned
     or referred to in the short summary.
     ####
     Findings:
@@ -69,6 +72,9 @@ const instructionObj = {
     ###
     about suprapatellar bursa, bakers cyst (popliteal cyst), popliteus tendon sheath, pes anserinus bursa, prepatellar bursa
     ###
+
+    Impression:
+    Unremarkable MRI of the [side] knee
     ####
     `
 }
