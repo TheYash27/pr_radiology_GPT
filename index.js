@@ -100,7 +100,7 @@ async function fetchReply() {
                 temperature: 0.37,
                 presence_penalty: 0.37,
                 frequency_penalty: -0.37,
-                max_tokens: 500
+                max_tokens: 70
             })
             AIResponse = response.data.choices[0].message.content.replace(/#/g, "") 
             push(conversationInDb, {
