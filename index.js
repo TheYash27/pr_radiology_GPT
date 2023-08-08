@@ -105,6 +105,9 @@ async function fetchReply() {
             })
             renderTypewriterText(AIResponse)
             responseContainer.innerHTML = AIResponse
+            tinymce.init({
+				selector: '#response-container'
+			});
         }
         else {
             console.log('No data available')
