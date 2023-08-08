@@ -32,9 +32,6 @@ userInput.addEventListener("blur", function() {
 })
 
 let AIResponse = ''
-const editableSpeechBubble = document.createElement('div')
-editableSpeechBubble.classList.add('speech', 'speech-human')
-editableSpeechBubble.setAttribute("contenteditable", true)
 
 const instructionObj = {
     role: 'system',
@@ -108,8 +105,7 @@ async function fetchReply() {
                 content: AIResponse
             })
             renderTypewriterText(AIResponse)
-            responseContainer.appendChild(editableSpeechBubble)
-            editableSpeechBubble.innerHTML = AIResponse
+            responseContainer.innerHTML = AIResponse
         }
         else {
             console.log('No data available')
@@ -140,9 +136,9 @@ document.getElementById('clear-btn').addEventListener('click', () => {
 document.getElementById('compare-btn').addEventListener('click', () => {
     push(conversationInDb, {
         role: 'user',
-        content: editableSpeechBubble.textContent
+        content: responseContainer.textContent
     })
-    highlightDifferentWords(AIResponse, editableSpeechBubble.textContent)
+    highlightDifferentWords(AIResponse, responseContainer.textContent)
 })
 
 function renderConversationFromDb(){
