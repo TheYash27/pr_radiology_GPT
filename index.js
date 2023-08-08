@@ -133,6 +133,7 @@ function renderTypewriterText(text) {
 document.getElementById('clear-btn').addEventListener('click', () => {
     chatbotConversation.innerHTML = '<div class="speech speech-ai">How can I help you?</div>'
     userInput.value = ''
+    responseContainer.textContent = ''
 })
 
 document.getElementById('compare-btn').addEventListener('click', () => {
