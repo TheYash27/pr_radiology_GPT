@@ -73,7 +73,6 @@ const instructionObj = {
 
 document.addEventListener('submit', (e) => {
     e.preventDefault()
-    responseContainer.innerHTML = '<img src="./images/loading.gif" />'
     push(conversationInDb, {
         role: 'user',
         content: userInput.value
