@@ -3,6 +3,8 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "firebase": "9.20.0",
+    "fs": "^0.0.1-security",
+    "natural": "^6.5.0",
     "openai": "3.2.1"
   },
   "devDependencies": {
